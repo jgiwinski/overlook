@@ -16,7 +16,7 @@ class Customer {
       acc += room.costPerNight;
       return acc;
     }, 0);
-    return total;
+    return Math.round(total * 100) / 100;
   }
 }
 
