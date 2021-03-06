@@ -88,6 +88,8 @@ describe('Customer', () => {
       "roomServiceCharges":[]
     }
 
+    allBookings = [booking1, booking2, booking3, booking4]
+
     cust1 = new Customer ({
       "id":1,
       "name":"Leatha Ullrich"
@@ -108,7 +110,6 @@ describe('Customer', () => {
       "name":"Kennedi Emard"
     }, allRooms, allBookings);
 
-    allBookings = [booking1, booking2, booking3, booking4]
   });
 
   it('should be a function', () => {
@@ -120,18 +121,35 @@ describe('Customer', () => {
   });
 
   it('should take a customer data object', function() {
-      expect(cust1.id).to.equal(1);
-      expect(cust1.name).to.equal("Leatha Ullrich");
+    expect(cust1.id).to.equal(1);
+    expect(cust1.name).to.equal("Leatha Ullrich");
   });
 
   it('should take a different customer data object', function() {
-      expect(cust4.id).to.equal(4);
-      expect(cust4.name).to.equal("Kennedi Emard");
+    expect(cust4.id).to.equal(4);
+    expect(cust4.name).to.equal("Kennedi Emard");
   });
 
-  it('should list the number of reservations', function() {
-      expect(cust1.roomsBooked.length).to.equal(2);
-      expect(cust1.roomsBooked[0].roomNumber).to.equal(12);
+  it('should list the number of reservations for one guest', function() {
+    cust1.findRoomsBooked(allBookings, allRooms);
+    expect(cust1.roomsBooked.length).to.equal(2);
+    expect(cust1.roomsBooked[0].number).to.equal(12);
+  });
+
+  it('should list the number of reservations for a different guest', function() {
+    cust2.findRoomsBooked(allBookings, allRooms)
+    expect(cust2.roomsBooked.length).to.equal(2);
+    expect(cust2.roomsBooked[1].number).to.equal(14);
+  });
+
+  it('should list the total amount spent by the user', function() {
+    cust2.findRoomsBooked(allBookings, allRooms);
+    expect(cust2.calculateTotalSpent()).to.equal(949.02);
+  });
+
+  it('should list the total amount spent by a different user', function() {
+    cust1.findRoomsBooked(allBookings, allRooms);
+    expect(cust1.calculateTotalSpent()).to.equal(516.04);
   });
 
 });

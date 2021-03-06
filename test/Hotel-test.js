@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Hotel from '../src/Hotel';
 
-describe('Customer', () => {
+describe('Hotel', () => {
   let cust1;
   let cust2;
   let cust3;
