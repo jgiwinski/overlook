@@ -1,19 +1,19 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
 
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import './images/bathroom.jpg';
 import Customer from './Customers';
 
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-let welcomeGuest = document.querySelector('.welcome-msg');
-let totalSpent = document.querySelector('.total-spent');
+// QUERY SELECTORS //
+const welcomeGuest = document.querySelector('.welcome-msg');
+const totalSpent = document.querySelector('.total-spent');
 // let pastReservations = document.querySelector('.past-res');
 // let futureReservations = document.querySelector('.future-res');
-let allReservations = document.querySelector('.all-res');
+const allReservations = document.querySelector('.all-res');
+const formErrorMessage = document.querySelector('.form-error-message');
+const bigErrorMessage = document.querySelector('#bigErrorMessage');
 
+
+// GLOBAL VARIABLES //
 let currentGuest;
 
 function start(values) {
@@ -37,6 +37,42 @@ function makeCustomers(data) {
   return data.map(customer => new Customer(customer))
 }
 
+// API CALLS AND ERROR HANDLING //
+function hide(element) {
+  element.classList.add('hidden');
+}
+
+function show(element) {
+  element.classList.remove('hidden');
+}
+
+function checkForError(response) {
+  if (!response.ok) {
+    throw new Error('Please make sure you\'ve entered some data.');
+  } else {
+    return response.json();
+  }
+}
+
+function displayErrorMessage(err) {
+  const message = '';
+
+  if (err.message === 'Failed to fetch') {
+    message = 'Something went wrong. Please check your internet connection.';
+    bigErrorMessage.innerText = message;
+    show(bigErrorMessage);
+    hide(formErrorMessage);
+  } else {
+    message = err.message;
+    formErrorMessage.innerText = message;
+    show(formErrorMessage);
+    hide(bigErrorMessage);
+  }
+}
+
+
+
+
 const customerData = fetchData('/customers', 'customers')
 const roomData = fetchData('/rooms', 'rooms')
 const bookingData = fetchData('/bookings', 'bookings')
@@ -45,7 +81,7 @@ function fetchData(path, key) {
   return fetch(`http://localhost:3001/api/v1${path}`)
     .then(response => response.json())
     .then(data => data[key])
-    .catch(error => console.log(error))
+    .catch(error => displayErrorMessage(error))
 }
 
 Promise.all([customerData, roomData, bookingData])

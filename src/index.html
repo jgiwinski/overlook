@@ -6,21 +6,23 @@
     <title>Webpack Starter Kit</title>
   </head>
   <body>
-    <nav>
+    <nav class="nav-bar">
       <h1>HOTEL OVERLOOK</h1>
       <h3 class="welcome-msg">WELCOME JULIA YOU AMAZING BITCH</h3>
     </nav>
     <main class="login-page hidden">
-      <section>
+      <form>
+        <h2 class="big-error-message" id="bigErrorMessage">Placeholder big error message</h2>
         <div>
-          <label>USERNAME:</label>
-          <input type="text"/>
+          <label for="username">USERNAME:</label>
+          <input type="text" name="username"/>
         </div>
         <div>
-          <label>PASSWORD:</label>
-          <input type="text"/>
+          <label for="password">PASSWORD:</label>
+          <input type="text"name="password"/>
         </div>
-      </section>
+        <p class="form-error-message">Placeholder message</p>
+      </form>
     </main>
     <main class="main-page">
       <section class="user-res-view">

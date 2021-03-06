@@ -1,7 +1,11 @@
 class Hotel {
-  constructor() {
-
+  constructor(customers, rooms, bookings) {
+    this.customerData = customers;
+    this.roomData = rooms;
+    this.bookingData = bookings;
   }
+
+  
 }
 
-export default Hotel; 
+export default Hotel;
