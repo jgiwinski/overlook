@@ -149,6 +149,9 @@ describe('Hotel', () => {
     expect(hotel.filterByRoomType("residential suite")).to.deep.equal([room20, room14])
   });
 
+  it('should be able to book a new room', function() {
+
+  }); 
 
 
 // I should be able to select a date for which I’d like to book a room for myself
