@@ -3,9 +3,28 @@ class Hotel {
     this.customerData = customers;
     this.roomData = rooms;
     this.bookingData = bookings;
+    this.availableRooms = [];
   }
 
-  
+  findAvailableRooms (date) {
+    const booked = this.bookingData.filter(booking => booking.date === date).map(booking => booking.roomNumber);
+    const availableRooms = this.roomData.filter(room => !booked.includes(room.number));
+    this.availableRooms = availableRooms;
+    // getRoomDeets(this.availableRooms);
+  }
+
+  createNewBooking () {
+
+  }
+
+  getRoomDeets () {
+
+  }
+
+  filterByRoomType (type) {
+    return this.availableRooms.filter(room => room.roomType === type)
+  }
+
 }
 
 export default Hotel;

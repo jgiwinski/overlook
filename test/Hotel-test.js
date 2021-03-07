@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Hotel from '../src/Hotel';
-import Customer from '../src/Customers'; 
+import Customer from '../src/Customers';
 
 describe('Hotel', () => {
   let cust1;
@@ -128,21 +128,30 @@ describe('Hotel', () => {
   });
 
   it('should take in array data', function() {
-      expect(hotel.customerData).to.equal(allCustomers);
-      expect(hotel.roomData).to.equal(allRooms);
-      expect(hotel.bookingData).to.equal(allBookings)
+    expect(hotel.customerData).to.equal(allCustomers);
+    expect(hotel.roomData).to.equal(allRooms);
+    expect(hotel.bookingData).to.equal(allBookings)
   });
 
-  //
-  // it('should take a different customer data object', function() {
-  //     expect(cust4.id).to.equal(4);
-  //     expect(cust4.name).to.equal("Kennedi Emard");
-  // });
+  it('should show available rooms', function() {
+    hotel.findAvailableRooms("2021/11/22")
+    expect(hotel.availableRooms).to.deep.equal([room12, room20, room3, room14]);
+  });
+
+  it('should show available rooms on a different date', function() {
+    hotel.findAvailableRooms("2020/01/20")
+    expect(hotel.availableRooms).to.deep.equal([room12, room20, room14]);
+  });
+
+  it('should filter by a room type', function() {
+    hotel.findAvailableRooms("2021/11/22")
+    expect(hotel.filterByRoomType("single room")).to.deep.equal([room12, room3])
+    expect(hotel.filterByRoomType("residential suite")).to.deep.equal([room20, room14])
+  });
 
 
-//   I should be able to select a date for which I’d like to book a room for myself
 
-// Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
+// I should be able to select a date for which I’d like to book a room for myself
 
 // I should be able to filter the list of available rooms by their roomType property
 
