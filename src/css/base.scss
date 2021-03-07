@@ -11,6 +11,22 @@ $darkGray: darkgray;
   flex-direction: row;
 }
 
+@mixin flex-col() {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin grid-display() {
+  margin: 1em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(15, 300px);
+  grid-gap: 1.5em;
+}
+
+// HEADER //
 .header {
   @include flex-row();
   justify-content: space-between;
@@ -41,9 +57,23 @@ $darkGray: darkgray;
   }
 }
 
+// USER PAGE VIEW //
+
+.user-page {
+
+}
+
+.all-res {
+  @include grid-display();
+  justify-items: center;
+}
+
 img {
-  height: 100px;
-  width: auto;
+  height: 175px;
+}
+
+.room-details {
+  @include flex-col();
 }
 
 

@@ -17,6 +17,7 @@ const inputID = document.querySelector('#userIDInput');
 const inputDate = document.querySelector('#dateInput');
 const inputRoomNumber = document.querySelector('#roomNumberInput');
 
+
 // GLOBAL VARIABLES //
 let hotel;
 let currentGuest;
@@ -29,15 +30,16 @@ function makeHotel(values) {
 
 function createCustomer (values) {
   currentGuest = new Customer(values[0][0]);
-  welcomeGuest.innerHTML = `Welcome ${currentGuest.name}`;
+  welcomeGuest.innerHTML = `Welcome, ${currentGuest.name}.`;
   currentGuest.findRoomsBooked(values[2], values[1]);
   totalSpent.innerHTML = `You love us this much:  ${currentGuest.calculateTotalSpent()}!`;
   currentGuest.roomsBooked.forEach((res, i) => {
-    allReservations.innerHTML += `
+    allReservations.innerHTML += `<section class="room-details">
     <img src="/images/bathroom.jpg" alt="Photo of room"/>
-    <h3>Room Number: ${currentGuest.roomsBooked[i].number} - ${currentGuest.roomsBooked[i].roomType}</h3>
+    <h2>Room Number: ${currentGuest.roomsBooked[i].number}</h2>
+    <h3>${currentGuest.roomsBooked[i].roomType}</h3>
     <h4>CHECK-IN: ${currentGuest.roomsBooked[i].date}</h4>
-    <h4>Cost: $${currentGuest.roomsBooked[i].costPerNight}</h4>`;
+    <h4>Cost: $${currentGuest.roomsBooked[i].costPerNight}</h4></section>`;
     })
 }
 
@@ -56,7 +58,7 @@ bookRoomForm.addEventListener('submit', (event) => {
 
 function viewReservationPage (date) {
   hotel.findAvailableRooms(date)
-  
+
 }
 
 // API CALLS AND ERROR HANDLING //
