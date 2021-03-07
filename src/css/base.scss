@@ -1,17 +1,51 @@
 * {
   margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+// @import 'styles';
+$darkGray: darkgray;
+
+@mixin flex-row() {
+  display: flex;
+  flex-direction: row;
+}
+
+.header {
+  @include flex-row();
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 1em;
+  background-color: $darkGray;
+  width: 100%;
+}
+
+.hotel-title {
+  font-size: xxx-large;
+}
+
+.btn-box {
+  padding: 3em;
+}
+
+.nav-btn {
+  margin: 1em;
+  font-size: x-large;
+  font-weight: bold;
+  background: none;
+  border: none;
+
+  &:hover {
+    color: white;
+  }
 }
 
 img {
   height: 100px;
-  width: auto; 
+  width: auto;
 }
 
-.header {
-  height: 150px;
-  background-color: darkgray;
-  width: 100%;
-}
 
 .hidden {
   display: none;
