@@ -1,15 +1,17 @@
 
 import './css/base.scss';
 import './images/bathroom.jpg';
-import datepicker from 'js-datepicker'
+// import datepicker from 'js-datepicker'
 import Customer from './Customers';
 import Hotel from './Hotel';
 
 // QUERY SELECTORS //
 const userResBtn = document.querySelector('.user-res-btn');
 const bookResBtn = document.querySelector('.book-res-btn');
+const loginBtn = document.querySelector('.login-btn');
 const userPage = document.querySelector('.user-page');
 const bookPage = document.querySelector('.book-page');
+const loginPage = document.querySelector('.login-page');
 const welcomeGuest = document.querySelector('.welcome-msg');
 const totalSpent = document.querySelector('.total-spent');
 // let pastReservations = document.querySelector('.past-res');
@@ -33,6 +35,7 @@ let hotel;
 let currentGuest;
 
 // EVENT LISTENERS //
+loginBtn.addEventListener('click', showLoginPage);
 userResBtn.addEventListener('click', showUserReservations);
 bookResBtn.addEventListener('click', showBookReservations);
 searchBtn.addEventListener('click', showAvailableReservations)
@@ -71,14 +74,23 @@ function createCustomer (values) {
   })
 }
 
+function showLoginPage() {
+  show(loginPage);
+  hide(bookPage);
+  hide(userPage);
+}
+
 function showUserReservations() {
   show(userPage);
   hide(bookPage);
+  hide(loginPage);
 }
 
 function showBookReservations() {
   show(bookPage);
   hide(userPage);
+  hide(loginPage);
+  // show()
 }
 
 function formatDate(date) {
