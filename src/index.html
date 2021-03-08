@@ -1,56 +1,78 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8">
-    <title>Webpack Starter Kit</title>
+    <title>Hotel Over IT</title>
   </head>
   <body>
     <header class="header">
-      <h1>HOTEL OVER IT</h1>
-      <h2 class="welcome-msg">WELCOME JULIA YOU AMAZING BITCH</h2>
+      <h1 class="hotel-title">HOTEL<br />OVER IT</h1>
+      <div class="btn-box">
+        <button class="nav-btn user-res-btn">Your Reservations</button>
+        <button class="nav-btn book-res-btn">Book a Room</button>
+        <button class="nav-btn login-btn">Log-in Page</button>
+      </div>
     </header>
     <main class="login-page hidden">
-      <form>
-        <h2 class="big-error-message" id="bigErrorMessage">Placeholder big error message</h2>
-        <div>
+      <form class="login-form">
+        <!-- <h2 class="big-error-message" id="bigErrorMessage">Placeholder big error message</h2> -->
+        <div class="login-margin">
           <label for="username">USERNAME:</label>
-          <input type="text" name="username"/>
+          <input id="username" type="text" name="username"/>
         </div>
-        <div>
+        <div class="login-margin">
           <label for="password">PASSWORD:</label>
-          <input type="text"name="password"/>
+          <input id="password" type="text"name="password"/>
         </div>
-        <p class="form-error-message">Placeholder message</p>
+        <!-- <p class="form-error-message">Placeholder message</p> -->
       </form>
     </main>
-    <main class="main-page">
+    <main class="column hidden user-page">
+      <div class="user-info-box">
+        <h1 class="welcome-msg">WELCOME JULIA YOU AMAZING BITCH</h1>
+        <h2 class="total-spent"></h2>
+      </div>
       <section class="user-res-view">
-        <div class="total-spent">
-          TOTAL AMOUNT SPENT
-        </div>
-        <div class="user-res-display">
-          <section class="all-res"></section>
-          <!-- <section class="past-res">
+        <section class="all-res"></section>
+        <!-- <section class="past-res">
 
-          </section>
-          <section class="future-res">
+        </section>
+        <section class="future-res">
 
-          </section> -->
-        </div>
+        </section> -->
       </section>
-      <section class="book-res-view">
-        <div>
-          CALENDAR
+    </main>
+    <main class="book-page">
+      <form class="book-room-form">
+        <div class="column date-box">
+          <label for="calendar"><h2>Select a Check-in date:</h2></label>
+          <input type="date" name="calendar" id="calendar"></input>
         </div>
-        <form class="book-room-form">
-          <label for="date">DATE:</label>
-          <input type="text" name="date" id="dateInput"/>
-          <label for="roomNumber">Room Number:</label>
-          <input type="number"name="roomNumber" id="roomNumberInput"/>
-          <input type="submit" class="submit-btn" id="submitButton" value="SUBMIT">
-        </form>
+        <div class="room-type">
+          <h2>Select a Room Type</h2>
+          <input type="radio" id="juniorSuite" name="room-type" value="junior suite">
+          <label for="juniorSuite">Junior Suite</label><br>
+          <input type="radio" id="singleRoom" name="room-type" value="single room">
+          <label for="singleRoom">Single Room</label><br>
+          <input type="radio" id="suite" name="room-type" value="suite">
+          <label for="suite">Suite</label><br>
+          <input type="radio" id="residentialSuite" name="room-type" value="residential suite">
+          <label for="residentialSuite">Residential Suite</label><br>
+        </div>
+        <!-- <label for="roomNumber">Room Number:</label>
+        <input type="number"name="roomNumber" id="roomNumberInput"/> -->
+
+        <!-- <input type="submit" class="submit-btn" id="submitButton" value="SUBMIT"> -->
+        <button class="search-btn">SEARCH</button>
+      </form>
+      <section class="booking-placeholder">
+        <img id="bedIcon" src="/images/icons8-bed-64.png" alt="Bed Icon Placeholder"/>
+        <h1>Let's Book a Room!</h1>
       </section>
+      <section class="all-avail-rooms all-res"></section>
     </main>
   </body>
 </html>

@@ -13,7 +13,8 @@ class Hotel {
   }
 
   filterByRoomType (type) {
-    return this.availableRooms.filter(room => room.roomType === type)
+    let filteredList = this.availableRooms.filter(room => room.roomType === type)
+    return this.availableRooms = filteredList;
   }
 
 }
