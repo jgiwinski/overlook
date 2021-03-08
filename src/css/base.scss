@@ -5,7 +5,8 @@
 
 // @import 'styles';
 @import '~js-datepicker/src/datepicker';
-$darkGray: darkgray;
+$background: darkgray;
+$grayBorder: solid darkgray;
 
 @mixin flex-row() {
   display: flex;
@@ -33,7 +34,7 @@ $darkGray: darkgray;
   align-items: center;
   height: 100px;
   padding: 1em;
-  background-color: $darkGray;
+  background-color: $background;
   width: 100%;
 }
 
@@ -65,18 +66,22 @@ $darkGray: darkgray;
 
 .login-form {
   @include flex-col();
-  justify-content: space-around;
   height: 400px;
   width: 600px;
-  border: solid $darkGray;
+  border: $grayBorder;
+}
+
+.login-margin {
+  margin: 2em;
 }
 
 // USER PAGE VIEW //
-.user-page {
+.column {
   @include flex-col();
 }
 
 .user-info-box {
+  @include flex-col();
   padding: 1em;
   height: 100px;
 }
@@ -90,30 +95,37 @@ img {
   height: 175px;
 }
 
-.column {
+
+// BOOK ROOM VIEW //
+.booking-placeholder {
   @include flex-col();
 }
 
-// BOOK ROOM VIEW //
+#bedIcon {
+  height: 50px;
+}
+
 h2 {
   font-size: larger;
 }
 
 .book-page {
   @include flex-row();
+  justify-content: space-between;
 }
 
 .book-room-form {
   @include flex-col();
   justify-content: flex-start;
-  border: solid $darkGray;
-  height: 250px;
+  border: $grayBorder;
+  height: 300px;
+  width: 20%;
   padding: 1em;
   margin: 1em;
 }
 
 .date-box, .room-type, .search-btn {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .search-btn {

@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8">
-    <title>Webpack Starter Kit</title>
+    <title>Hotel Over IT</title>
   </head>
   <body>
     <header class="header">
@@ -16,21 +16,21 @@
         <button class="nav-btn login-btn">Log-in Page</button>
       </div>
     </header>
-    <main class="login-page">
+    <main class="login-page hidden">
       <form class="login-form">
         <!-- <h2 class="big-error-message" id="bigErrorMessage">Placeholder big error message</h2> -->
-        <div>
+        <div class="login-margin">
           <label for="username">USERNAME:</label>
           <input id="username" type="text" name="username"/>
         </div>
-        <div>
+        <div class="login-margin">
           <label for="password">PASSWORD:</label>
           <input id="password" type="text"name="password"/>
         </div>
         <!-- <p class="form-error-message">Placeholder message</p> -->
       </form>
     </main>
-    <main class="user-page hidden">
+    <main class="column hidden user-page">
       <div class="user-info-box">
         <h1 class="welcome-msg">WELCOME JULIA YOU AMAZING BITCH</h1>
         <h2 class="total-spent"></h2>
@@ -45,7 +45,7 @@
         </section> -->
       </section>
     </main>
-    <main class="book-page hidden">
+    <main class="book-page">
       <form class="book-room-form">
         <div class="column date-box">
           <label for="calendar"><h2>Select a Check-in date:</h2></label>
@@ -68,6 +68,10 @@
         <!-- <input type="submit" class="submit-btn" id="submitButton" value="SUBMIT"> -->
         <button class="search-btn">SEARCH</button>
       </form>
+      <section class="booking-placeholder">
+        <img id="bedIcon" src="/images/icons8-bed-64.png" alt="Bed Icon Placeholder"/>
+        <h1>Let's Book a Room!</h1>
+      </section>
       <section class="all-avail-rooms all-res"></section>
     </main>
   </body>

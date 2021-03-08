@@ -1,6 +1,7 @@
 
 import './css/base.scss';
 import './images/bathroom.jpg';
+import './images/icons8-bed-64.png'
 // import datepicker from 'js-datepicker'
 import Customer from './Customers';
 import Hotel from './Hotel';
@@ -19,7 +20,7 @@ const totalSpent = document.querySelector('.total-spent');
 const allReservations = document.querySelector('.all-res');
 const formErrorMessage = document.querySelector('.form-error-message');
 const bigErrorMessage = document.querySelector('#bigErrorMessage');
-
+const bookingPlaceholder = document.querySelector('.booking-placeholder');
 const bookRoomForm = document.querySelector('.book-room-form')
 const roomTypeRadios = document.querySelectorAll('input[name=room-type]:checked');
 // const inputRoomNumber = document.querySelector('#roomNumberInput');
@@ -98,6 +99,7 @@ function formatDate(date) {
 }
 
 function showAvailableReservations() {
+  hide(bookingPlaceholder)
   allAvailableRooms.innerHTML = ``;
   const roomTypeRadios = document.querySelectorAll('input[name=room-type]:checked');
   const dateInput = document.querySelector('#calendar');
