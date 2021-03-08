@@ -117,20 +117,19 @@ h2 {
 
 .book-room-form {
   @include flex-col();
-  justify-content: flex-start;
   border: $grayBorder;
-  height: 300px;
+  height: 400px;
   width: 20%;
   padding: 1em;
   margin: 1em;
 }
 
 .date-box, .room-type, .search-btn {
-  margin-bottom: 40px;
+  margin: 20px 0;
 }
 
 .search-btn {
-  width: 150px;
+  width: 200px;
 }
 
 .hidden {
