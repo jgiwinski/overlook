@@ -11,8 +11,8 @@
     <header class="header">
       <h1 class="hotel-title">HOTEL<br />OVER IT</h1>
       <div class="btn-box">
-        <button class="nav-btn">Your Reservations</button>
-        <button class="nav-btn">Book a Room</button>
+        <button class="nav-btn user-res-btn">Your Reservations</button>
+        <button class="nav-btn book-res-btn">Book a Room</button>
       </div>
     </header>
     <main class="login-page hidden">
@@ -29,38 +29,45 @@
         <p class="form-error-message">Placeholder message</p>
       </form>
     </main>
-    <main class="user-page">
-      <div>
-        <h2 class="welcome-msg">WELCOME JULIA YOU AMAZING BITCH</h2>
-        <div class="total-spent">
-          TOTAL AMOUNT SPENT
-        </div>
+    <main class="user-page hidden">
+      <div class="user-info-box">
+        <h1 class="welcome-msg">WELCOME JULIA YOU AMAZING BITCH</h1>
+        <h2 class="total-spent"></h2>
       </div>
       <section class="user-res-view">
-        <div class="user-res-display">
-          <section class="all-res"></section>
-          <!-- <section class="past-res">
+        <section class="all-res"></section>
+        <!-- <section class="past-res">
 
-          </section>
-          <section class="future-res">
+        </section>
+        <section class="future-res">
 
-          </section> -->
-        </div>
+        </section> -->
       </section>
     </main>
     <main class="book-page">
-      <section class="book-res-view">
-        <div>
-          CALENDAR
+      <form class="book-room-form">
+        <div class="column date-box">
+          <label for="calendar"><h3>Select a Check-in date:</h3></label>
+          <input type="date" name="calendar" id="calendar"></input>
         </div>
-        <form class="book-room-form">
-          <label for="date">DATE:</label>
-          <input type="text" name="date" id="dateInput"/>
-          <label for="roomNumber">Room Number:</label>
-          <input type="number"name="roomNumber" id="roomNumberInput"/>
-          <input type="submit" class="submit-btn" id="submitButton" value="SUBMIT">
-        </form>
-      </section>
+        <div class="room-type">
+          <h3>Select a Room Type</h3>
+          <input type="radio" id="juniorSuite" name="room-type" value="junior suite">
+          <label for="juniorSuite">Junior Suite</label><br>
+          <input type="radio" id="singleRoom" name="room-type" value="single room">
+          <label for="singleRoom">Single Room</label><br>
+          <input type="radio" id="suite" name="room-type" value="suite">
+          <label for="suite">Suite</label><br>
+          <input type="radio" id="residentiaSuite" name="room-type" value="residential suite">
+          <label for="residentialSuite">Residential Suite</label><br>
+        </div>
+        <!-- <label for="roomNumber">Room Number:</label>
+        <input type="number"name="roomNumber" id="roomNumberInput"/> -->
+
+        <!-- <input type="submit" class="submit-btn" id="submitButton" value="SUBMIT"> -->
+        <button class="search-btn">SEARCH</button>
+      </form>
+      <section class="all-avail-rooms all-res"></section>
     </main>
   </body>
 </html>

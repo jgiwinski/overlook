@@ -4,6 +4,7 @@
 }
 
 // @import 'styles';
+@import '~js-datepicker/src/datepicker';
 $darkGray: darkgray;
 
 @mixin flex-row() {
@@ -13,7 +14,7 @@ $darkGray: darkgray;
 
 @mixin flex-col() {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -22,7 +23,6 @@ $darkGray: darkgray;
   margin: 1em;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(15, 300px);
   grid-gap: 1.5em;
 }
 
@@ -58,9 +58,13 @@ $darkGray: darkgray;
 }
 
 // USER PAGE VIEW //
-
 .user-page {
+  @include flex-col();
+}
 
+.user-info-box {
+  padding: 1em;
+  height: 100px;
 }
 
 .all-res {
@@ -72,10 +76,30 @@ img {
   height: 175px;
 }
 
-.room-details {
+.column {
   @include flex-col();
 }
 
+// BOOK ROOM VIEW //
+.book-page {
+  @include flex-row();
+}
+
+.book-room-form {
+  @include flex-col();
+  justify-content: flex-start;
+  border: solid $darkGray;
+  padding: 1em;
+  margin: 1em;
+}
+
+.date-box, .room-type, .search-btn {
+  margin-bottom: 30px;
+}
+
+.search-btn {
+  width: 150px;
+}
 
 .hidden {
   display: none;
