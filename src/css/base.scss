@@ -1,16 +1,123 @@
 * {
   margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+// @import 'styles';
+@import '~js-datepicker/src/datepicker';
+$darkGray: darkgray;
+
+@mixin flex-row() {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-col() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin grid-display() {
+  margin: 1em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.5em;
+}
+
+// HEADER //
+.header {
+  @include flex-row();
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 1em;
+  background-color: $darkGray;
+  width: 100%;
+}
+
+.hotel-title {
+  font-size: xxx-large;
+}
+
+.btn-box {
+  padding: 3em;
+}
+
+.nav-btn {
+  margin: 1em;
+  font-size: x-large;
+  font-weight: bold;
+  background: none;
+  border: none;
+
+  &:hover {
+    color: white;
+  }
+}
+
+// LOGIN PAGE //
+.login-page {
+  margin-top: 100px;
+  @include flex-col();
+}
+
+.login-form {
+  @include flex-col();
+  justify-content: space-around;
+  height: 400px;
+  width: 600px;
+  border: solid $darkGray;
+}
+
+// USER PAGE VIEW //
+.user-page {
+  @include flex-col();
+}
+
+.user-info-box {
+  padding: 1em;
+  height: 100px;
+}
+
+.all-res {
+  @include grid-display();
+  justify-items: center;
 }
 
 img {
-  height: 100px;
-  width: auto; 
+  height: 175px;
 }
 
-.header {
-  height: 150px;
-  background-color: darkgray;
-  width: 100%;
+.column {
+  @include flex-col();
+}
+
+// BOOK ROOM VIEW //
+h2 {
+  font-size: larger;
+}
+
+.book-page {
+  @include flex-row();
+}
+
+.book-room-form {
+  @include flex-col();
+  justify-content: flex-start;
+  border: solid $darkGray;
+  height: 250px;
+  padding: 1em;
+  margin: 1em;
+}
+
+.date-box, .room-type, .search-btn {
+  margin-bottom: 30px;
+}
+
+.search-btn {
+  width: 150px;
 }
 
 .hidden {

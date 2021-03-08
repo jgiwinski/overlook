@@ -149,17 +149,4 @@ describe('Hotel', () => {
     expect(hotel.filterByRoomType("residential suite")).to.deep.equal([room20, room14])
   });
 
-  it('should be able to book a new room', function() {
-
-  }); 
-
-
-// I should be able to select a date for which I’d like to book a room for myself
-
-// I should be able to filter the list of available rooms by their roomType property
-
-// I should be able to select a room for booking
-
-// In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their room search
-
 });
