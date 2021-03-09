@@ -24,7 +24,6 @@ class Hotel {
       return this.availableRooms = this.availableRooms.filter(room => !room.bidet)
     }
   }
-
 }
 
 export default Hotel;

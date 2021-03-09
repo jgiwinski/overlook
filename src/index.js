@@ -3,6 +3,7 @@ import './css/base.scss';
 import './images/bathroom.jpg';
 import './images/icons8-bed-64.png';
 import './images/icons8-stop-sign-52.png';
+import './images/icons8-tick-box-64.png';
 import './images/sad.jpg';
 import Customer from './Customers';
 import Hotel from './Hotel';
@@ -23,6 +24,7 @@ const bigErrorMessage = document.querySelector('#bigErrorMessage');
 const bookingPlaceholder = document.querySelector('.booking-placeholder');
 const stopSignError = document.querySelector('.input-stopper');
 const fierceApology = document.querySelector('.fierce-apology');
+const bookingConf = document.querySelector('.booking-conf');
 const bookRoomForm = document.querySelector('.book-room-form');
 const roomTypeRadios = document.querySelectorAll('input[name=room-type]:checked');
 const allAvailableRooms = document.querySelector('.all-avail-rooms');
@@ -67,6 +69,7 @@ function showLoginPage() {
   show(loginPage);
   hide(bookPage);
   hide(userPage);
+  hide(bookingConf)
 }
 
 function showUserReservations() {
@@ -94,12 +97,14 @@ function showAvailableReservations() {
   if((roomTypeRadios === []) || (bidetInput === null) || (dateInput.value === '')){
     allAvailableRooms.innerHTML = '';
     hide(bookingPlaceholder);
-    hide(fierceApology)
+    hide(fierceApology);
+    hide(bookingConf)
     show(stopSignError);
   } else {
     allAvailableRooms.innerHTML = '';
     hide(stopSignError);
-    hide(fierceApology)
+    hide(fierceApology);
+    hide(bookingConf)
     hide(bookingPlaceholder);
     hotel.findAvailableRooms(date);
     hotel.filterByRoomType(roomTypeRadios[0].value);
@@ -108,19 +113,7 @@ function showAvailableReservations() {
     bookRoomForm.reset();
   }
 }
-//
-// bookBtn.addEventListener('submit', (event) => {
-//   event.preventDefault();
-//   event.target.id()
-//   const newBooking = {
-//     "userID": currentGuest.id,
-//     "date": dateInput.value,
-//     "roomNumber": hotel.availableRooms[i].number;
-//   }
-//   postData(newBooking)
-//   event.target.reset();
-//   // location.reload()
-// })
+
 
 function populateResCards(date) {
   if(hotel.availableRooms.length === 0) {
@@ -135,9 +128,35 @@ function populateResCards(date) {
       <h4>Has bidet: ${hotel.availableRooms[i].bidet}<h4>
       <h4>Cost: $${hotel.availableRooms[i].costPerNight}</h4>
       <input type="submit" class="book-btn" id="${hotel.availableRooms[i].number}-${date}" value="BOOK ROOM"></section>`;
-    }); 
+    });
   }
 }
+
+function bookRoom(id) {
+  const roomDetails = id.split('-');
+  const newBooking = {
+    "userID": currentGuest.id,
+    "date": roomDetails[1],
+    "roomNumber": parseInt(roomDetails[0])
+  }
+  postData(newBooking)
+  bookingConfirmation();
+}
+
+function bookingConfirmation() {
+  allAvailableRooms.innerHTML = '';
+  show(bookingConf);
+}
+
+allAvailableRooms.addEventListener('click', function(event) {
+  if (!event.target.id) {
+    return
+  } else if (event.target.id === 'done') {
+    showUserReservations()
+  } else {
+    bookRoom(event.target.id)
+    }
+  });
 
 // API CALLS AND ERROR HANDLING //
 function hide(element) {

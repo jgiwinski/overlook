@@ -1,0 +1,21 @@
+$background: darkgray;
+$grayBorder: solid darkgray;
+
+@mixin flex-row() {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-col() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin grid-display() {
+  margin: 1em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.5em;
+}
