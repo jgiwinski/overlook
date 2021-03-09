@@ -1,8 +1,9 @@
 
 import './css/base.scss';
 import './images/bathroom.jpg';
-import './images/icons8-bed-64.png'
-// import datepicker from 'js-datepicker'
+import './images/icons8-bed-64.png';
+import './images/icons8-stop-sign-52.png';
+import './images/sad.jpg';
 import Customer from './Customers';
 import Hotel from './Hotel';
 
@@ -18,17 +19,15 @@ const totalSpent = document.querySelector('.total-spent');
 // let pastReservations = document.querySelector('.past-res');
 // let futureReservations = document.querySelector('.future-res');
 const allReservations = document.querySelector('.all-res');
-const formErrorMessage = document.querySelector('.form-error-message');
 const bigErrorMessage = document.querySelector('#bigErrorMessage');
 const bookingPlaceholder = document.querySelector('.booking-placeholder');
-const bookRoomForm = document.querySelector('.book-room-form')
+const stopSignError = document.querySelector('.input-stopper');
+const fierceApology = document.querySelector('.fierce-apology');
+const bookRoomForm = document.querySelector('.book-room-form');
 const roomTypeRadios = document.querySelectorAll('input[name=room-type]:checked');
-// const inputRoomNumber = document.querySelector('#roomNumberInput');
 const allAvailableRooms = document.querySelector('.all-avail-rooms');
 const searchBtn = document.querySelector('.search-btn');
 const bookBtn = document.querySelector('.book-btn');
-// const calendar = document.querySelector('#calendar');
-// const picker = datepicker(calendar)
 
 
 // GLOBAL VARIABLES //
@@ -41,18 +40,7 @@ userResBtn.addEventListener('click', showUserReservations);
 bookResBtn.addEventListener('click', showBookReservations);
 searchBtn.addEventListener('click', showAvailableReservations)
 
-bookRoomForm.addEventListener('submit', (event) => {
-  event.preventDefault();
 
-  const newBooking = {
-    "userID": currentGuest.id,
-    "date": inputDate.value,
-    "roomNumber": parseInt(inputRoomNumber.value)
-  }
-  postData(newBooking)
-  event.target.reset();
-  location.reload()
-})
 
 // WHERE THE SHIT HAPPENS //
 function makeHotel(values) {
@@ -91,7 +79,6 @@ function showBookReservations() {
   show(bookPage);
   hide(userPage);
   hide(loginPage);
-  // show()
 }
 
 function formatDate(date) {
@@ -99,22 +86,57 @@ function formatDate(date) {
 }
 
 function showAvailableReservations() {
-  hide(bookingPlaceholder)
-  allAvailableRooms.innerHTML = ``;
   const roomTypeRadios = document.querySelectorAll('input[name=room-type]:checked');
   const dateInput = document.querySelector('#calendar');
-  let date = formatDate(dateInput.value)
-  hotel.findAvailableRooms(date);
-  hotel.filterByRoomType(roomTypeRadios[0].value);
-  hotel.availableRooms.forEach((res, i) => {
-    allAvailableRooms.innerHTML += `<section class="column">
-    <img src="/images/bathroom.jpg" alt="Photo of room"/>
-    <h2>Room Number: ${hotel.availableRooms[i].number}</h2>
-    <h3>${hotel.availableRooms[i].roomType}</h3>
-    <h4>Cost: $${hotel.availableRooms[i].costPerNight}</h4>
-    <button class="book-btn">BOOK ROOM</button></section>`;
+  const bidetInput = document.querySelector('input[name=bidet]:checked');
+  const date = formatDate(dateInput.value);
+
+  if((roomTypeRadios === []) || (bidetInput === null) || (dateInput.value === '')){
+    allAvailableRooms.innerHTML = '';
+    hide(bookingPlaceholder);
+    hide(fierceApology)
+    show(stopSignError);
+  } else {
+    allAvailableRooms.innerHTML = '';
+    hide(stopSignError);
+    hide(fierceApology)
+    hide(bookingPlaceholder);
+    hotel.findAvailableRooms(date);
+    hotel.filterByRoomType(roomTypeRadios[0].value);
+    hotel.hasBidet(bidetInput.value);
+    populateResCards(date);
+    bookRoomForm.reset();
+  }
+}
+//
+// bookBtn.addEventListener('submit', (event) => {
+//   event.preventDefault();
+//   event.target.id()
+//   const newBooking = {
+//     "userID": currentGuest.id,
+//     "date": dateInput.value,
+//     "roomNumber": hotel.availableRooms[i].number;
+//   }
+//   postData(newBooking)
+//   event.target.reset();
+//   // location.reload()
+// })
+
+function populateResCards(date) {
+  if(hotel.availableRooms.length === 0) {
+    show(fierceApology)
+  } else {
+    hide(fierceApology)
+    hotel.availableRooms.forEach((res, i) => {
+      allAvailableRooms.innerHTML += `<section class="column">
+      <img src="/images/bathroom.jpg" alt="Photo of room"/>
+      <h2>Room Number: ${hotel.availableRooms[i].number}</h2>
+      <h3>${hotel.availableRooms[i].roomType}</h3>
+      <h4>Has bidet: ${hotel.availableRooms[i].bidet}<h4>
+      <h4>Cost: $${hotel.availableRooms[i].costPerNight}</h4>
+      <input type="submit" class="book-btn" id="${hotel.availableRooms[i].number}-${date}" value="BOOK ROOM"></section>`;
     })
-  bookRoomForm.reset();
+  }
 }
 
 // API CALLS AND ERROR HANDLING //
@@ -141,11 +163,9 @@ function displayErrorMessage(err) {
     message = 'Something went wrong. Please check your internet connection.';
     bigErrorMessage.innerText = message;
     show(bigErrorMessage);
-    hide(formErrorMessage);
   } else {
     message = err.message;
     formErrorMessage.innerText = message;
-    show(formErrorMessage);
     hide(bigErrorMessage);
   }
 }

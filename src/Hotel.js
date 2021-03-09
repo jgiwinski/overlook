@@ -18,7 +18,7 @@ class Hotel {
   }
 
   hasBidet (opinion) {
-    if(opinion === true){
+    if(opinion === 'true'){
       return this.availableRooms = this.availableRooms.filter(room => room.bidet)
     } else {
       return this.availableRooms = this.availableRooms.filter(room => !room.bidet)

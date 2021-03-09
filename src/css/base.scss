@@ -3,9 +3,8 @@
   font-family: 'Noto Sans', sans-serif;
 }
 
-
 // @import 'styles';
-@import '~js-datepicker/src/datepicker';
+// @import '~js-datepicker/src/datepicker';
 $background: darkgray;
 $grayBorder: solid darkgray;
 
@@ -98,11 +97,7 @@ img {
 
 
 // BOOK ROOM VIEW //
-.booking-placeholder {
-  @include flex-col();
-}
-
-#bedIcon {
+#icon {
   height: 50px;
 }
 
@@ -130,6 +125,10 @@ h2 {
 
 .search-btn {
   width: 200px;
+}
+
+.book-btn {
+  margin: 10px;
 }
 
 .hidden {
