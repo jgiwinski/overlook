@@ -12,19 +12,19 @@ import Hotel from './Hotel';
 const usernameInput = document.querySelector('#username');
 const passwordInput = document.querySelector('#password');
 const submitLoginBtn = document.querySelector('.submit-login-btn');
-
 const userResBtn = document.querySelector('.user-res-btn');
 const bookResBtn = document.querySelector('.book-res-btn');
 const loginPageBtn = document.querySelector('.login-btn');
+
 const userPage = document.querySelector('.user-page');
 const bookPage = document.querySelector('.book-page');
 const loginPage = document.querySelector('.login-page');
+
 const welcomeGuest = document.querySelector('.welcome-msg');
 const totalSpent = document.querySelector('.total-spent');
-// let pastReservations = document.querySelector('.past-res');
-// let futureReservations = document.querySelector('.future-res');
 const allReservations = document.querySelector('.all-res');
-const bigErrorMessage = document.querySelector('#bigErrorMessage');
+
+// const bigErrorMessage = document.querySelector('#bigErrorMessage');
 const bookingPlaceholder = document.querySelector('.booking-placeholder');
 const stopSignError = document.querySelector('.input-stopper');
 const fierceApology = document.querySelector('.fierce-apology');
@@ -34,7 +34,6 @@ const roomTypeRadios = document.querySelectorAll('input[name=room-type]:checked'
 const allAvailableRooms = document.querySelector('.all-avail-rooms');
 const searchBtn = document.querySelector('.search-btn');
 const bookBtn = document.querySelector('.book-btn');
-
 
 // GLOBAL VARIABLES //
 let hotel;

@@ -29,6 +29,9 @@
 }
 
 // USER PAGE VIEW //
+.welcome-msg {
+  text-align: center; 
+}
 
 .all-res {
   @include mobile-grid();
@@ -38,6 +41,10 @@
 
 .book-page {
   @include flex-col();
+}
+
+.book-room-form {
+  width: 60%;
 }
 
 }
