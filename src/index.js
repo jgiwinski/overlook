@@ -124,9 +124,9 @@ function showAvailableReservations() {
 
 function populateResCards(date) {
   if(hotel.availableRooms.length === 0) {
-    show(fierceApology)
+    show(fierceApology);
   } else {
-    hide(fierceApology)
+    hide(fierceApology);
     hotel.availableRooms.forEach((res, i) => {
       allAvailableRooms.innerHTML += `<section class="column">
       <img src="/images/bathroom.jpg" alt="Photo of room"/>
@@ -135,7 +135,7 @@ function populateResCards(date) {
       <h4>Has bidet: ${hotel.availableRooms[i].bidet}<h4>
       <h4>Cost: $${hotel.availableRooms[i].costPerNight}</h4>
       <input type="submit" class="book-btn" id="${hotel.availableRooms[i].number}-${date}" value="BOOK ROOM"></section>`;
-    })
+    }); 
   }
 }
 
