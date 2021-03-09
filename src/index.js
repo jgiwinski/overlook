@@ -9,9 +9,13 @@ import Customer from './Customers';
 import Hotel from './Hotel';
 
 // QUERY SELECTORS //
+const usernameInput = document.querySelector('#username');
+const passwordInput = document.querySelector('#password');
+const submitLoginBtn = document.querySelector('.submit-login-btn');
+
 const userResBtn = document.querySelector('.user-res-btn');
 const bookResBtn = document.querySelector('.book-res-btn');
-const loginBtn = document.querySelector('.login-btn');
+const loginPageBtn = document.querySelector('.login-btn');
 const userPage = document.querySelector('.user-page');
 const bookPage = document.querySelector('.book-page');
 const loginPage = document.querySelector('.login-page');
@@ -37,7 +41,8 @@ let hotel;
 let currentGuest;
 
 // EVENT LISTENERS //
-loginBtn.addEventListener('click', showLoginPage);
+// submitLoginBtn.addEventListener('click', login);
+loginPageBtn.addEventListener('click', showLoginPage);
 userResBtn.addEventListener('click', showUserReservations);
 bookResBtn.addEventListener('click', showBookReservations);
 searchBtn.addEventListener('click', showAvailableReservations)
@@ -45,6 +50,13 @@ searchBtn.addEventListener('click', showAvailableReservations)
 
 
 // WHERE THE SHIT HAPPENS //
+// function login() {
+//   let id;
+//   if(passwordInput.value === 'overlook2021' && !usernameInput.value){
+//     id = parseInt(usernameInput.value.slice(8));
+//   }
+// }
+
 function makeHotel(values) {
   hotel = new Hotel(values[0], values[1], values[2])
   createCustomer(values) // <- make that dynamic eventually
@@ -72,7 +84,7 @@ function showLoginPage() {
 }
 
 function showUserReservations() {
-  location.reload(); 
+  // location.reload();
   show(userPage);
   hide(bookPage);
   hide(loginPage);

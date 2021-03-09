@@ -13,10 +13,6 @@
   font-size: xxx-large;
 }
 
-.btn-box {
-  padding: 3em;
-}
-
 .nav-btn {
   margin: 1em;
   font-size: x-large;
@@ -46,6 +42,10 @@
   margin: 2em;
 }
 
+.submit-login-btn {
+  width: 30%;
+}
+
 // USER PAGE VIEW //
 .column {
   @include flex-col();
@@ -58,7 +58,7 @@
 }
 
 .all-res {
-  @include grid-display();
+ @include grid-display()
   justify-items: center;
 }
 
@@ -98,6 +98,13 @@ h2 {
   width: 200px;
 }
 
+.all-avail-rooms {
+  margin: 1em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1.5em;
+}
+
 .fierce-apology {
   width: 50%;
 }
@@ -107,10 +114,6 @@ h2 {
 }
 
 #home {
-  margin-top: 10px; 
+  margin-top: 10px;
   width: 50%;
-}
-
-.hidden {
-  display: none;
 }

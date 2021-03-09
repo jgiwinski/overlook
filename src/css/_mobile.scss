@@ -1,0 +1,43 @@
+@media screen and (max-width: 600px) {
+
+// HEADER //
+.header {
+  height: 170px;
+}
+
+.hotel-title {
+  font-size: xxx-large;
+}
+
+.btn-box {
+  @include flex-col();
+}
+
+.nav-btn {
+  margin: 10px;
+  border-bottom: solid white;
+}
+
+// LOGIN //
+.login-form {
+  height: 300px;
+  width: 300px;
+}
+
+.login-margin {
+  margin: 1em;
+}
+
+// USER PAGE VIEW //
+
+.all-res {
+  @include mobile-grid();
+}
+
+// BOOK ROOM VIEW //
+
+.book-page {
+  @include flex-col();
+}
+
+}
