@@ -24,7 +24,6 @@ const welcomeGuest = document.querySelector('.welcome-msg');
 const totalSpent = document.querySelector('.total-spent');
 const allReservations = document.querySelector('.all-res');
 
-// const bigErrorMessage = document.querySelector('#bigErrorMessage');
 const bookingPlaceholder = document.querySelector('.booking-placeholder');
 const stopSignError = document.querySelector('.input-stopper');
 const fierceApology = document.querySelector('.fierce-apology');
@@ -123,7 +122,6 @@ function showAvailableReservations() {
   }
 }
 
-
 function populateResCards(date) {
   if(hotel.availableRooms.length === 0) {
     show(fierceApology);
@@ -140,6 +138,16 @@ function populateResCards(date) {
     });
   }
 }
+
+allAvailableRooms.addEventListener('click', function(event) {
+  if (!event.target.id) {
+    return
+  } else if (event.target.id === 'home') {
+    showUserReservations()
+  } else {
+    bookRoom(event.target.id)
+    }
+  });
 
 function bookRoom(id) {
   const roomDetails = id.split('-');
@@ -161,16 +169,6 @@ function bookingConfirmation() {
   </section>`;
 }
 
-allAvailableRooms.addEventListener('click', function(event) {
-  if (!event.target.id) {
-    return
-  } else if (event.target.id === 'home') {
-    showUserReservations()
-  } else {
-    bookRoom(event.target.id)
-    }
-  });
-
 // API CALLS AND ERROR HANDLING //
 function hide(element) {
   element.classList.add('hidden');
@@ -180,34 +178,13 @@ function show(element) {
   element.classList.remove('hidden');
 }
 
-// function checkForError(response) {
-//   if (!response.ok) {
-//     throw new Error('Please make sure you\'ve entered some data.');
-//   } else {
-//     return response.json();
-//   }
-// }
-
-function displayErrorMessage(err) {
-  const message = '';
-
-  if (err.message === 'Failed to fetch') {
-    message = 'Something went wrong. Please check your internet connection.';
-    bigErrorMessage.innerText = message;
-    show(bigErrorMessage);
-  } else {
-    message = err.message;
-    formErrorMessage.innerText = message;
-    hide(bigErrorMessage);
-  }
-}
-
 function fetchData(path, key) {
   return fetch(`http://localhost:3001/api/v1${path}`)
     .then(response => response.json())
     .then(data => data[key])
-    .catch(error => displayErrorMessage(error))
+    .catch(error => alert('Oh no! Looks like there was a problem. Try reloading the page.'))
   }
+  
 const customerData = fetchData('/customers', 'customers')
 const roomData = fetchData('/rooms', 'rooms')
 const bookingData = fetchData('/bookings', 'bookings')
@@ -226,5 +203,5 @@ function postData(data) {
   })
   .then(response => response.json())
   .then(data => console.log(data))
-  .catch(error => displayErrorMessage(error))
+  .catch(error => alert('Oh no! Looks like there was a problem. Try reloading the page.'))
 }
