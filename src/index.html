@@ -27,7 +27,6 @@
           <label for="password">PASSWORD:</label>
           <input id="password" type="text"name="password"/>
         </div>
-        <!-- <p class="form-error-message">Placeholder message</p> -->
       </form>
     </main>
     <main class="column hidden user-page">
@@ -37,12 +36,8 @@
       </div>
       <section class="user-res-view">
         <section class="all-res"></section>
-        <!-- <section class="past-res">
-
-        </section>
-        <section class="future-res">
-
-        </section> -->
+        <!-- <section class="past-res"></section>
+        <section class="future-res"></section> -->
       </section>
     </main>
     <main class="book-page">
@@ -62,15 +57,26 @@
           <input type="radio" id="residentialSuite" name="room-type" value="residential suite">
           <label for="residentialSuite">Residential Suite</label><br>
         </div>
-        <!-- <label for="roomNumber">Room Number:</label>
-        <input type="number"name="roomNumber" id="roomNumberInput"/> -->
-
-        <!-- <input type="submit" class="submit-btn" id="submitButton" value="SUBMIT"> -->
-        <button class="search-btn">SEARCH</button>
+        <div>
+          <h2>Has Bidet</h2>
+          <input type="radio" id="true" name="bidet" value="true">
+          <label for="true">Yes!</label><br>
+          <input type="radio" id="false" name="bidet" value="false">
+          <label for="false">No thank you.</label><br>
+        </div>
+        <button type="button" class="search-btn">SEARCH</button>
       </form>
-      <section class="booking-placeholder">
-        <img id="bedIcon" src="/images/icons8-bed-64.png" alt="Bed Icon Placeholder"/>
+      <section class="booking-placeholder column">
+        <img id="icon" src="/images/icons8-bed-64.png" alt="Bed Icon Placeholder"/>
         <h1>Let's Book a Room!</h1>
+      </section>
+      <section class="input-stopper column hidden">
+        <img id="icon" src="/images/icons8-stop-sign-52.png" alt="Stop sign icon Placeholder"/>
+        <h1>Oh no! Please fill out all the whole form.</h1>
+      </section>
+      <section class="fierce-apology column hidden">
+        <img id="icon" src="/images/sad.jpg" alt="Sorry icon Placeholder"/>
+        <h1>WE ARE SO SORRY WE HAVE FAILED YOU - THERE ARE NO ROOMS AVAILABLE THAT MEET YOUR NEEDS. PLEASE TRY A DIFFERENT DATE OR ROOM TYPE SO THAT WE CAN ACCOMMODATE YOU. WE WOULD BE SO SAD IF YOU CHOSE SOMEWHERE ELSE TO SLEEP. WE WILL TRY TO DO BETTER IN THE FUTURE PLEASE DONT GIVE US A BAD REVIEW. IT WOULD HURT OUR HEART AND CRUSH OUR SOUL IF YOU SAID ANYTHING BAD ABOUT US. WE LOVE YOU AND HOPE YOU FIND IT IN YOUR HEART TO FORGIVE US. XOXOXOXO</h1>
       </section>
       <section class="all-avail-rooms all-res"></section>
     </main>

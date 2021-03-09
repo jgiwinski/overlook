@@ -17,6 +17,14 @@ class Hotel {
     return this.availableRooms = filteredList;
   }
 
+  hasBidet (opinion) {
+    if(opinion === 'true'){
+      return this.availableRooms = this.availableRooms.filter(room => room.bidet)
+    } else {
+      return this.availableRooms = this.availableRooms.filter(room => !room.bidet)
+    }
+  }
+
 }
 
 export default Hotel;

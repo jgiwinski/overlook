@@ -145,8 +145,18 @@ describe('Hotel', () => {
 
   it('should filter by a room type', function() {
     hotel.findAvailableRooms("2021/11/22")
-    expect(hotel.filterByRoomType("single room")).to.deep.equal([room12, room3])
     expect(hotel.filterByRoomType("residential suite")).to.deep.equal([room20, room14])
+  });
+
+  it('should filter by a different room type', function() {
+    hotel.findAvailableRooms("2020/01/21")
+    expect(hotel.filterByRoomType("single room")).to.deep.equal([room12, room3])
+  });
+
+  it('should filter the rooms if they have a bidet', function() {
+    hotel.findAvailableRooms("2020/11/20")
+    hotel.hasBidet(false)
+    expect(hotel.availableRooms).to.deep.equal([room12, room20, room3, room14]);
   });
 
 });
