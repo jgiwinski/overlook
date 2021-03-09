@@ -69,10 +69,10 @@ function showLoginPage() {
   show(loginPage);
   hide(bookPage);
   hide(userPage);
-  hide(bookingConf)
 }
 
 function showUserReservations() {
+  location.reload(); 
   show(userPage);
   hide(bookPage);
   hide(loginPage);
@@ -98,13 +98,11 @@ function showAvailableReservations() {
     allAvailableRooms.innerHTML = '';
     hide(bookingPlaceholder);
     hide(fierceApology);
-    hide(bookingConf)
     show(stopSignError);
   } else {
     allAvailableRooms.innerHTML = '';
     hide(stopSignError);
     hide(fierceApology);
-    hide(bookingConf)
     hide(bookingPlaceholder);
     hotel.findAvailableRooms(date);
     hotel.filterByRoomType(roomTypeRadios[0].value);
@@ -144,14 +142,18 @@ function bookRoom(id) {
 }
 
 function bookingConfirmation() {
-  allAvailableRooms.innerHTML = '';
-  show(bookingConf);
+  allAvailableRooms.innerHTML = `
+  <section class="booking-conf column">
+    <img id="icon" src="/images/icons8-tick-box-64.png" alt="Confirmation Check Icon Placeholder"/>
+    <h1>Your booking has been confirmed!</h1>
+    <button id="home">View Your reservations</button>
+  </section>`;
 }
 
 allAvailableRooms.addEventListener('click', function(event) {
   if (!event.target.id) {
     return
-  } else if (event.target.id === 'done') {
+  } else if (event.target.id === 'home') {
     showUserReservations()
   } else {
     bookRoom(event.target.id)
