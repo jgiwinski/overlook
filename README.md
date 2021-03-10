@@ -39,6 +39,9 @@ After the rooms have been filtered and displayed for the user they then have the
 
 <img src="https://gyazo.com/c4ea10d6f7ace34100fab67bead47790.gif" >
 
+MOBILE VIEW 
+<img src="https://gyazo.com/901a00acf34ff88f78b235bc06d4a3c6.gif" >
+
 ## Contributing
 
 [Julia Iwinski](https://github.com/jgiwinski)
