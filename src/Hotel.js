@@ -1,3 +1,5 @@
+import Customer from './Customers'
+
 class Hotel {
   constructor(customers, rooms, bookings) {
     this.customerData = customers;

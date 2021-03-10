@@ -1,0 +1,24 @@
+@media screen and (max-width: 1100px) {
+
+// HEADER //
+.hotel-title {
+  font-size: 2em;
+}
+
+.nav-btn {
+  margin: 0;
+  font-size: large; 
+}
+
+// USER PAGE VIEW //
+.all-res {
+  @include tablet-grid()
+}
+
+// BOOK ROOM VIEW //
+.book-room-form {
+  margin: 1em .5em;
+  width: 30%;
+}
+
+}

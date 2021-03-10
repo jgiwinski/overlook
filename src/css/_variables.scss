@@ -19,3 +19,16 @@ $grayBorder: solid darkgray;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1.5em;
 }
+
+@mixin tablet-grid() {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1.5em;
+}
+
+@mixin mobile-grid() {
+  margin: 1em;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 1.5em;
+}

@@ -9,18 +9,22 @@ import Customer from './Customers';
 import Hotel from './Hotel';
 
 // QUERY SELECTORS //
+const usernameInput = document.querySelector('#username');
+const passwordInput = document.querySelector('#password');
+const submitLoginBtn = document.querySelector('.submit-login-btn');
 const userResBtn = document.querySelector('.user-res-btn');
 const bookResBtn = document.querySelector('.book-res-btn');
-const loginBtn = document.querySelector('.login-btn');
+const loginPageBtn = document.querySelector('.login-btn');
+
 const userPage = document.querySelector('.user-page');
 const bookPage = document.querySelector('.book-page');
 const loginPage = document.querySelector('.login-page');
+const loginForm = document.querySelector('.login-form');
+
 const welcomeGuest = document.querySelector('.welcome-msg');
 const totalSpent = document.querySelector('.total-spent');
-// let pastReservations = document.querySelector('.past-res');
-// let futureReservations = document.querySelector('.future-res');
 const allReservations = document.querySelector('.all-res');
-const bigErrorMessage = document.querySelector('#bigErrorMessage');
+
 const bookingPlaceholder = document.querySelector('.booking-placeholder');
 const stopSignError = document.querySelector('.input-stopper');
 const fierceApology = document.querySelector('.fierce-apology');
@@ -30,30 +34,55 @@ const roomTypeRadios = document.querySelectorAll('input[name=room-type]:checked'
 const allAvailableRooms = document.querySelector('.all-avail-rooms');
 const searchBtn = document.querySelector('.search-btn');
 const bookBtn = document.querySelector('.book-btn');
-
+let allCustomerData;
+let allRoomData;
+let allBookingData;
 
 // GLOBAL VARIABLES //
 let hotel;
 let currentGuest;
 
 // EVENT LISTENERS //
-loginBtn.addEventListener('click', showLoginPage);
+submitLoginBtn.addEventListener('click', login);
+loginPageBtn.addEventListener('click', showLoginPage);
 userResBtn.addEventListener('click', showUserReservations);
 bookResBtn.addEventListener('click', showBookReservations);
 searchBtn.addEventListener('click', showAvailableReservations)
 
 
-
 // WHERE THE SHIT HAPPENS //
-function makeHotel(values) {
-  hotel = new Hotel(values[0], values[1], values[2])
-  createCustomer(values) // <- make that dynamic eventually
+function login(e) {
+  e.preventDefault();
+  let id;
+  if((passwordInput.value === 'overlook2021') && (usernameInput.value)){
+    id = parseInt(usernameInput.value.slice(8));
+    fetchCustomer(id).then(user => createCustomer(user))
+    showUserReservations();
+  } else {
+    alert('Whoopsies! Looks like you didnt fill the whole form out or your credentials are wrong. Why dont you give it another shot!')
+  }
+  loginForm.reset();
 }
 
-function createCustomer (values) {
-  currentGuest = new Customer(values[0][0]);
+function makeHotel(values, id) {
+  allCustomerData = values[0];
+  allRoomData = values[1];
+  allBookingData = values[2];
+  hotel = new Hotel(allCustomerData, allRoomData, allBookingData)
+}
+
+function fetchCustomer (id) {
+  return fetch(`http://localhost:3001/api/v1/customers/${id}`)
+    .then(response => response.json())
+    .then(data => data)
+    .catch(error => console.log(error))
+    console.log(user)
+}
+
+function createCustomer (user) {
+  currentGuest = new Customer(user);
   welcomeGuest.innerHTML = `Welcome, ${currentGuest.name}.`;
-  currentGuest.findRoomsBooked(values[2], values[1]);
+  currentGuest.findRoomsBooked(allBookingData, allRoomData);
   totalSpent.innerHTML = `You love us this much: $${currentGuest.calculateTotalSpent()}!`;
   currentGuest.roomsBooked.forEach((res, i) => {
     allReservations.innerHTML += `<section class="column">
@@ -72,7 +101,7 @@ function showLoginPage() {
 }
 
 function showUserReservations() {
-  location.reload(); 
+  // location.reload();
   show(userPage);
   hide(bookPage);
   hide(loginPage);
@@ -112,7 +141,6 @@ function showAvailableReservations() {
   }
 }
 
-
 function populateResCards(date) {
   if(hotel.availableRooms.length === 0) {
     show(fierceApology);
@@ -130,6 +158,18 @@ function populateResCards(date) {
   }
 }
 
+allAvailableRooms.addEventListener('click', function(event) {
+  if (!event.target.id) {
+    return
+  } else if (event.target.id === 'home') {
+    showUserReservations();
+    allAvailableRooms.innerHTML = ``;
+    show(bookingPlaceholder);
+  } else {
+    bookRoom(event.target.id)
+    }
+  });
+
 function bookRoom(id) {
   const roomDetails = id.split('-');
   const newBooking = {
@@ -137,7 +177,7 @@ function bookRoom(id) {
     "date": roomDetails[1],
     "roomNumber": parseInt(roomDetails[0])
   }
-  postData(newBooking)
+  postData(newBooking);
   bookingConfirmation();
 }
 
@@ -150,16 +190,6 @@ function bookingConfirmation() {
   </section>`;
 }
 
-allAvailableRooms.addEventListener('click', function(event) {
-  if (!event.target.id) {
-    return
-  } else if (event.target.id === 'home') {
-    showUserReservations()
-  } else {
-    bookRoom(event.target.id)
-    }
-  });
-
 // API CALLS AND ERROR HANDLING //
 function hide(element) {
   element.classList.add('hidden');
@@ -169,38 +199,16 @@ function show(element) {
   element.classList.remove('hidden');
 }
 
-// function checkForError(response) {
-//   if (!response.ok) {
-//     throw new Error('Please make sure you\'ve entered some data.');
-//   } else {
-//     return response.json();
-//   }
-// }
-
-function displayErrorMessage(err) {
-  const message = '';
-
-  if (err.message === 'Failed to fetch') {
-    message = 'Something went wrong. Please check your internet connection.';
-    bigErrorMessage.innerText = message;
-    show(bigErrorMessage);
-  } else {
-    message = err.message;
-    formErrorMessage.innerText = message;
-    hide(bigErrorMessage);
-  }
-}
-
 function fetchData(path, key) {
   return fetch(`http://localhost:3001/api/v1${path}`)
     .then(response => response.json())
     .then(data => data[key])
-    .catch(error => displayErrorMessage(error))
+    .catch(error => alert('Oh no! Looks like there was a problem. Try reloading the page.'))
   }
+
 const customerData = fetchData('/customers', 'customers')
 const roomData = fetchData('/rooms', 'rooms')
 const bookingData = fetchData('/bookings', 'bookings')
-
 
 Promise.all([customerData, roomData, bookingData])
   .then(values => makeHotel(values))
@@ -215,5 +223,5 @@ function postData(data) {
   })
   .then(response => response.json())
   .then(data => console.log(data))
-  .catch(error => displayErrorMessage(error))
+  .catch(error => alert('Oh no! Looks like there was a problem. Try reloading the page.'))
 }

@@ -1,0 +1,51 @@
+@media screen and (max-width: 600px) {
+
+// HEADER //
+.header {
+  height: 150px;
+}
+
+.hotel-title {
+  font-size: xxx-large;
+}
+
+.btn-box {
+  @include flex-col();
+}
+
+.nav-btn {
+  margin: 10px;
+  font-size: large;
+  border-bottom: solid white;
+}
+
+// LOGIN //
+.login-form {
+  height: 300px;
+  width: 300px;
+}
+
+.login-margin {
+  margin: 1em;
+}
+
+// USER PAGE VIEW //
+.welcome-msg {
+  text-align: center;
+}
+
+.all-res {
+  @include mobile-grid();
+}
+
+// BOOK ROOM VIEW //
+
+.book-page {
+  @include flex-col();
+}
+
+.book-room-form {
+  width: 60%;
+}
+
+}
