@@ -69,7 +69,6 @@ function makeHotel(values, id) {
   allRoomData = values[1];
   allBookingData = values[2];
   hotel = new Hotel(allCustomerData, allRoomData, allBookingData)
-  hotel.makeAllCustomers();
 }
 
 function fetchCustomer (id) {
@@ -163,7 +162,9 @@ allAvailableRooms.addEventListener('click', function(event) {
   if (!event.target.id) {
     return
   } else if (event.target.id === 'home') {
-    showUserReservations()
+    showUserReservations();
+    allAvailableRooms.innerHTML = ``;
+    show(bookingPlaceholder);
   } else {
     bookRoom(event.target.id)
     }
@@ -176,7 +177,7 @@ function bookRoom(id) {
     "date": roomDetails[1],
     "roomNumber": parseInt(roomDetails[0])
   }
-  postData(newBooking)
+  postData(newBooking);
   bookingConfirmation();
 }
 

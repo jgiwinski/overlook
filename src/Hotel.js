@@ -8,10 +8,6 @@ class Hotel {
     this.availableRooms = [];
   }
 
-  makeAllCustomers () {
-    return this.customerData.forEach(person => new Customer(person));
-  }
-
   findAvailableRooms (date) {
     const booked = this.bookingData.filter(booking => booking.date === date).map(booking => booking.roomNumber);
     const availableRooms = this.roomData.filter(room => !booked.includes(room.number));
