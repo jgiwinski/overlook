@@ -37,7 +37,7 @@ If in the unfortunate circumstance there are no rooms available then an apology 
 
 After the rooms have been filtered and displayed for the user they then have the option to book any of the available rooms. Once the book room is clicked the user will be brought back to the user reservation view - this is where they will see all of their reservations. 
 
-
+<img src="https://gyazo.com/c4ea10d6f7ace34100fab67bead47790.gif" >
 
 ## Contributing
 
